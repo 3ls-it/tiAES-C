@@ -72,8 +72,7 @@ void
 ke(char* key)
 {
     int r,c,t,e;
-    // I'm not sure why I used unsigned
-    // but we'll keep it.
+    // Use unsigned int as we do math with  'i'   
     unsigned int i;
     nk = 8;
     nr = 14;
