@@ -49,7 +49,7 @@ main(int argc, char* argv[])
     uchar* key =  SHA256(pwd);
 
     // Zero-out and deallocate pwd memory location
-	memset(pwd, 0, 32*sizeof(pwd[0]));
+    memset(pwd, 0, 32*sizeof(pwd[0]));
     free(pwd);
 
     // Do key expansion
