@@ -26,7 +26,7 @@ The portable version compiles cleanly with Clang 16.0.x on FreeBSD 14, Clang 13.
 The FreeBSD and OpenBSD base systems have all the required libraries, but you can optionally  install:  
 + gmake  
 
-`# pkg install gmake` as root or, with `sudo` or `doas`.  
+`# pkg install gmake` as root or, with `sudo`.  
 
 To compile, run:  
 `$ gmake`  
