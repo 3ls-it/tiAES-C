@@ -81,7 +81,7 @@ get_iv()
     // Digest rand num
     uchar* hsh = SHA256(rn);
     // Clear mem location of rand num
-    memset(rn, 0, 64*sizeof(rn[0]));
+    explicit_bzero(rn, 64*sizeof(rn[0]));
 
     // Load IV
     i = 0;
@@ -92,5 +92,5 @@ get_iv()
         }
     }
     // Clear mem location of hash
-    memset(hsh, 0, 32*sizeof(hsh[0]));
+    explicit_bzero(hsh, 32*sizeof(hsh[0]));
 }

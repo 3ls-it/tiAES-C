@@ -6,13 +6,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifndef CRYPUTILS_H
-#define CRYPUTILS_H
-#include "cryputils.h"
+#ifdef BSD
+    #include <readpassphrase.h>
 #endif
 
-//word bytes
-#define NB 4
+#ifdef LINUX
+    #include <bsd/readpassphrase.h>
+    #include <bsd/string.h>
+#endif
+
+#ifndef CRYPUTILS_H
+    #define CRYPUTILS_H
+    #include "cryputils.h"
+#endif
+
+#define NB 4 // word bytes
+#define BLOCK_SIZE 16
+#define KEY_SIZE 32
+#define SCHEDULE_SIZE 240
 
 //data types
 typedef unsigned int uint;

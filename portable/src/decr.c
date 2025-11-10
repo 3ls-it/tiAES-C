@@ -124,7 +124,7 @@ cbcdec(char* inf, char* of)
         perror("Could not open input file for reading!");
         printf("Cleaning up and exiting gracefully.");
         // Zero out key schedule 
-        memset(w, 0, 60*4*sizeof(w[0][0]));
+        explicit_bzero(w, SCHEDULE_SIZE);
         exit(0);
         }
 
@@ -178,11 +178,11 @@ cbcdec(char* inf, char* of)
     fclose(in);
 
     // Zero out keymaterial and state 
-    memset(w, 0, 60*4*sizeof(w[0][0]));
-    memset(tb, 0, 16*sizeof(tb[0][0]));
-    memset(iv, 0, 16*sizeof(iv[0][0]));
-    memset(ns, 0, 16*sizeof(ns[0][0]));
-    memset(st, 0, 16*sizeof(st[0][0]));
+    explicit_bzero(w, SCHEDULE_SIZE);
+    explicit_bzero(tb, BLOCK_SIZE);
+    explicit_bzero(iv, BLOCK_SIZE);
+    explicit_bzero(ns, BLOCK_SIZE);
+    explicit_bzero(st, BLOCK_SIZE);
 
     // Get the padding value to truncate byte array
     pd = barr[bsz-1];
@@ -195,7 +195,7 @@ cbcdec(char* inf, char* of)
         perror("out file not open for writing in cbcdec()!\n");
         printf("Cleaning up and exiting gracefully.");
         // Zero out byte array
-        memset(barr, 0, bsz*sizeof(barr[0]));
+        explicit_bzero(barr, bsz*sizeof(barr[0]));
         exit(0);
     }
     for (i=0; i<sz; i++) {
@@ -204,7 +204,7 @@ cbcdec(char* inf, char* of)
     fclose(out);
 
     // Zero out byte array
-    memset(barr, 0, bsz*sizeof(barr[0]));
+    explicit_bzero(barr, bsz*sizeof(barr[0]));
     free(barr);
 }//end cbcdec()
 

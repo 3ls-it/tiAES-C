@@ -10,6 +10,8 @@ Modifications by J Adams jfa63[at]duck[dot]com
 #include <stdlib.h>
 #include <string.h>
 
+#include "core.h"
+
 #define uchar unsigned char
 #define uint unsigned int
 
@@ -129,7 +131,8 @@ SHA256Final(SHA256_CTX *ctx, uchar hash[])
         while (i < 64)
             ctx->data[i++] = 0x00;
         SHA256Transform(ctx, ctx->data);
-        memset(ctx->data, 0, 56);
+        //memset(ctx->data, 0, 56);
+        explicit_bzero(ctx->data, 56);
     }
 
     DBL_INT_ADD(ctx->bitlen[0], ctx->bitlen[1], ctx->datalen * 8);

@@ -221,7 +221,7 @@ get_iv()
     printf("\n\n");
     
     uchar* hsh = SHA256(rn);
-    memset(rn, 0, 64*sizeof(rn[0]));
+    explicit_bzero(rn, 64*sizeof(rn[0]));
 
     for (i = 0; i < 32; i++) {
         printf("%02x ", hsh[i]);
@@ -235,7 +235,7 @@ get_iv()
             i++;
         }
     }
-    memset(hsh, 0, 32*sizeof(hsh[0]));
+    explicit_bzero(hsh, 32*sizeof(hsh[0]));
 }
 
 

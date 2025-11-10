@@ -125,7 +125,7 @@ cbcenc(char* inf, char* of)
         perror("Could not open input file for reading!");
         printf("Cleaning up and exiting gracefully.");
         // Zero out key schedule 
-        memset(w, 0, 60*4*sizeof(w[0][0]));
+        explicit_bzero(w, SCHEDULE_SIZE);
         exit(0);
     }
     
@@ -165,7 +165,7 @@ cbcenc(char* inf, char* of)
         perror("out file not open for writing in cbcenc() 1!\n");
         printf("Cleaning up and exiting gracefully.");
         // Zero out byte array
-        memset(barr, 0, bsz*sizeof(barr[0]));
+        explicit_bzero(barr, bsz*sizeof(barr[0]));
         exit(-1); 
     }
     for (r=0; r<4; r++) {
@@ -201,11 +201,11 @@ cbcenc(char* inf, char* of)
             perror("out file not open for writing in cbcenc() 2!\n");
             printf("Cleaning up and exiting gracefully.");
             // Zero out keymaterial, state and byte array
-            memset(w, 0, 60*4*sizeof(w[0][0]));
-            memset(iv, 0, 16*sizeof(iv[0][0]));
-            memset(ns, 0, 16*sizeof(ns[0][0]));
-            memset(st, 0, 16*sizeof(st[0][0]));
-            memset(barr, 0, bsz*sizeof(barr[0]));
+            explicit_bzero(w, SCHEDULE_SIZE);
+            explicit_bzero(iv, BLOCK_SIZE);
+            explicit_bzero(ns, BLOCK_SIZE);
+            explicit_bzero(st, BLOCK_SIZE);
+            explicit_bzero(barr, bsz*sizeof(barr[0]));
             exit(1);
         }
         for (c=0; c<4; c++) {
@@ -218,10 +218,10 @@ cbcenc(char* inf, char* of)
     fclose(out);
 
     // Zero out keymaterial, state and byte array
-    memset(w, 0, 60*4*sizeof(w[0][0]));
-    memset(iv, 0, 16*sizeof(iv[0][0]));
-    memset(ns, 0, 16*sizeof(ns[0][0]));
-    memset(st, 0, 16*sizeof(st[0][0]));
-    memset(barr, 0, bsz*sizeof(barr[0]));
+    explicit_bzero(w, SCHEDULE_SIZE);
+    explicit_bzero(iv, BLOCK_SIZE);
+    explicit_bzero(ns, BLOCK_SIZE);
+    explicit_bzero(st, BLOCK_SIZE);
+    explicit_bzero(barr, bsz*sizeof(barr[0]));
 }//end cbcenc()
 
