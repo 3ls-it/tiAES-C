@@ -1,6 +1,8 @@
-//tiaes.c
-//(c) 2023 2024 J Adams jfa63[at]duck[dot]com
-//Released under the 2-clause BSD license.
+/*-
+ * tiaes.c
+ * (c) 2023 2024 2025 J Adams jfa63[at]duck[dot]com
+ * Released under the 2-clause BSD license.
+ */
 
 /*
  * Usage: tiaes [e,d] <infile> <outfile>
