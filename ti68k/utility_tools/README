@@ -1,0 +1,2 @@
+These utilities were used to build the needed GF(256) multiplication tables, as well as
+the Sbox and InverseSbox tables.
